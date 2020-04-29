@@ -4,17 +4,29 @@ using ComercioLibre.ViewModels;
 using ComercioLibre.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using ComercioLibre.Data;
+using ComercioLibre.Services;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace ComercioLibre
 {
     public partial class App
     {
-        /* 
-         * The Xamarin Forms XAML Previewer in Visual Studio uses System.Activator.CreateInstance.
-         * This imposes a limitation in which the App class must have a default constructor. 
-         * App(IPlatformInitializer initializer = null) cannot be handled by the Activator.
-         */
+        private static ComercioLibreDataBase database;
+        public static ComercioLibreDataBase DataBase
+        {
+            get
+            {
+
+                if (database == null)
+                {
+                    database =
+                        new ComercioLibreDataBase(DependencyService.Get<IFileHelper>().GetLocalFilePath("ComercioLibre.db3"));
+                }
+                return database;
+
+            }
+        }
         public App() : this(null) { }
 
         public App(IPlatformInitializer initializer) : base(initializer) { }
@@ -22,8 +34,9 @@ namespace ComercioLibre
         protected override async void OnInitialized()
         {
             InitializeComponent();
-
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            App.database.ComprobarVersion();
+            await NavigationService.NavigateAsync("/ControlCovid19MasterDetailPage/NavigationPage/HomePage");
+            //await NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -31,6 +44,8 @@ namespace ComercioLibre
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<PaginaPrincipalPage, PaginaPrincipalPageViewModel>();
+            containerRegistry.RegisterForNavigation<ComercioLibreMasterDetailPage, ComercioLibreMasterDetailPageViewModel>();
+            containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
         }
     }
 }
