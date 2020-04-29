@@ -34,8 +34,8 @@ namespace ComercioLibre
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            App.database.ComprobarVersion();
-            await NavigationService.NavigateAsync("/ControlCovid19MasterDetailPage/NavigationPage/HomePage");
+            App.DataBase.ComprobarVersion();
+            await NavigationService.NavigateAsync("/ComercioLibreMasterDetailPage/NavigationPage/HomePage");
             //await NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
 
