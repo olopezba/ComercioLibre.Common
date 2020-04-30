@@ -14,5 +14,7 @@ namespace ComercioLibre.Data.Entities
         public string PaginaWeb { get; set; }
         public int CategoriaId { get; set; }
         public string Comentario { get; set; }
+        //public List<Horario> Horarios { get; set; }
+
     }
 }

@@ -17,6 +17,16 @@ namespace ComercioLibre.Data
             CrearTablaBBDD();
         }
 
+
+        private void CrearTablaBBDD()
+        {
+            _database.CreateTable<Categoria>();
+            _database.CreateTable<Tienda>();
+            _database.CreateTable<Cliente>();
+            _database.CreateTable<CitaPrevia>();
+            _database.CreateTable<Horario>();
+        }
+
         public void ComprobarVersion()
         {
 
@@ -100,12 +110,7 @@ namespace ComercioLibre.Data
 
 
 
-        private void CrearTablaBBDD()
-        {
-            _database.CreateTable<Categoria>();
-            _database.CreateTable<Tienda>();
-            _database.CreateTable<Cliente>();
-        }
+        
 
         public List<Categoria> GetAllCategoria()
         {

@@ -11,6 +11,8 @@ namespace ComercioLibre.Data.Entities
         public int Id { get; set; }
         public int ClienteId { get; set; }
         public int TiendaId { get; set; }
-        public DateTime FechaHora { get; set; }
+        public DateTime FechaHoraInicio { get; set; }
+        public DateTime FechaHoraFin { get; set; }
+        public bool Cancelado { get; set; }
     }
 }

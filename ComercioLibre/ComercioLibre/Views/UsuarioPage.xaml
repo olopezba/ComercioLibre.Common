@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:converters="clr-namespace:ComercioLibre.Converters"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             Title="{Binding Title}"
+             x:Class="ComercioLibre.Views.UsuarioPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="txtEntradas"  TargetType="inputLayout:SfTextInputLayout">
+                <Setter Property="IsHintAlwaysFloated" Value="True" />
+                <Setter Property="TrailingViewPosition" Value="Outside" />
+                <Setter Property="ContainerType" Value="Outlined" />
+                <Setter Property="OutlineCornerRadius" Value="8" />
+                <Setter Property="InputViewPadding" Value="10" />
+                <Setter Property="FocusedColor" Value="#3FCBD4" />
+                <Setter Property="FocusedStrokeWidth" Value="4" />
+                <Setter Property="UnfocusedStrokeWidth" Value="2" />
+                <Setter Property="ShowHelperText" Value="False" />
+                <Setter Property="ReserveSpaceForAssistiveLabels" Value="False" />
+                <Setter Property="IsEnabled" Value="False" />
+            </Style>
+            <converters:DateTimeToMes x:Key="convertirMes"/>
+            <converters:DateTimeToUpper x:Key="FechaMayuscula"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView VerticalScrollBarVisibility="Never">
+        <Frame HasShadow="True" BorderColor="DarkGray" CornerRadius="10"
+                    Margin="10" IsClippedToBounds="True">
+            <Grid BackgroundColor="Accent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="18*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" >
+                    <Label FontSize="25" Text="Tu perfil" TextColor="#3FCBD4"
+                                Margin="30,0" FontAttributes="Bold"
+                               HorizontalOptions="CenterAndExpand" VerticalOptions="Center"
+                               HorizontalTextAlignment="Center"/>
+
+                    <Label Text="Nombre" Style="{StaticResource LabelPerfil}"/>
+                    <inputLayout:SfTextInputLayout
+                            Grid.Column="1"
+                            Style="{StaticResource txtEntradas}"
+                            Hint="" 
+                            HelperText=""
+                            HasError="{Binding ErrorNombre}"
+                            ErrorText="El campo no puede estar vacio">
+                        <Entry  Text="{Binding Anfitrion.Nombre,Mode=TwoWay}"  />
+                    </inputLayout:SfTextInputLayout>
+                    <Label Text="Email" Style="{StaticResource LabelPerfil}"/>
+                    <inputLayout:SfTextInputLayout
+                            Grid.Column="1"
+                            Style="{StaticResource txtEntradas}"
+                            Hint="" 
+                            HelperText=""
+                            HasError="{Binding ErrorNombre}"
+                            ErrorText="El campo no puede estar vacio">
+                        <Entry Text="{Binding Anfitrion.Email,Mode=TwoWay}"/>
+                    </inputLayout:SfTextInputLayout>
+                    <!--<Entry Text="{Binding Anfi.Email,Mode=TwoWay}" Keyboard="Email"
+                            Placeholder="Tu Email" Style="{StaticResource cajaTexto}"/>-->
+
+                    <BoxView Visual="Material" HeightRequest="20" />
+
+                    <Label Text="Direccion" Style="{StaticResource LabelPerfil}"/>
+                    <inputLayout:SfTextInputLayout
+                            Grid.Column="1"
+                            Style="{StaticResource txtEntradas}"
+                            Hint="" 
+                            HelperText=""
+                            HasError="{Binding ErrorNombre}"
+                            ErrorText="El campo no puede estar vacio">
+                        <Entry Text="{Binding Anfitrion.DomicilioSocial, Mode=TwoWay}"/>
+                    </inputLayout:SfTextInputLayout>
+                </StackLayout>
+            </Grid>
+            
+        </Frame>
+    </ScrollView>
+</ContentPage>

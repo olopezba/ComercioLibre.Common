@@ -33,10 +33,11 @@ namespace ComercioLibre
 
         protected override async void OnInitialized()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjAwMTI0QDMxMzcyZTM0MmUzMEc3S2swOEpuODU1M1llTHJtYzRYaVl3Q1RFYUgvSnBtSzlyU0Jrd0RhUWs9");
             InitializeComponent();
             App.DataBase.ComprobarVersion();
-            await NavigationService.NavigateAsync("/ComercioLibreMasterDetailPage/NavigationPage/HomePage");
-            //await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            //await NavigationService.NavigateAsync("/ComercioLibreMasterDetailPage/NavigationPage/HomePage");
+            await NavigationService.NavigateAsync("/NavigationPage/UsuarioPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -46,6 +47,7 @@ namespace ComercioLibre
             containerRegistry.RegisterForNavigation<PaginaPrincipalPage, PaginaPrincipalPageViewModel>();
             containerRegistry.RegisterForNavigation<ComercioLibreMasterDetailPage, ComercioLibreMasterDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
+            containerRegistry.RegisterForNavigation<UsuarioPage, UsuarioPageViewModel>();
         }
     }
 }
